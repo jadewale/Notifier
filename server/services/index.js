@@ -2,6 +2,7 @@ const firebase = require('firebase');
 const FCM = require('fcm-push');
 const users = require('../controllers/users');
 require('firebase/firestore');
+
 const firebaseConfig = firebase.initializeApp({
   apiKey: 'AIzaSyA1u-0H2jiBrI3Pm0kRLdzYrFuKCX7YL2I',
   authDomain: 'license-399fc.firebaseapp.com',
@@ -44,30 +45,18 @@ function checkUserExist(data) {
 }
 
 function createUser(data) {
-  try {
-    const response = users.postUser(data);
-    sendMessage('');
-    sendPushNotification(data.token, 'Your Notification has expired');
-    sendSms(data.phoneNumber);
-    updateDb(data.email);
-    response.then((dataObj) => console.log(dataObj));
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-function sendMessage(phoneNumber) {
-  try {
-    client.messages
-      .create({
-        body: "Let's grab lunch at Milliways tomorrow!",
-        to: '+2349097438705',
-        from: '+2349097438705',
-      })
-      .then((message) => console.log('console ', message.sid));
-  } catch (err) {
-    console.log(err, 'from twillo');
-  }
+  return new Promise((resolve, reject) => {
+    try {
+      const response = users.postUser(data);
+      sendPushNotification(data.token, 'Your Notification has expired');
+      sendSms(data.phoneNumber);
+      updateDb(data.email).then(() => {
+        response.then((dataObj) => resolve(dataObj));
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  });
 }
 
 function clearDatabase() {
@@ -99,7 +88,7 @@ function sendPushNotification(token, body) {
 }
 
 function updateDb(email) {
-  firebase.firestore()
+  return firebase.firestore()
     .collection('user')
     .doc(email).set({ verified: false, licenseMessage: 'Expired !!!' }, { merge: true }).then((res) => (res)).catch((err) => (err));
 }
@@ -133,4 +122,6 @@ function sendInternationalNumber() {
     .catch((error) => console.log(error));
 }
 
-module.exports = { intervalFunc, checkUserExist, clearDatabase, updateDb, sendPushNotification}
+module.exports = {
+  intervalFunc, checkUserExist, createUser, clearDatabase, updateDb, sendPushNotification,
+};
