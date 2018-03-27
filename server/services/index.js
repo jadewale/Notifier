@@ -3,6 +3,7 @@ const FCM = require('fcm-push');
 const users = require('../controllers/users');
 require('firebase/firestore');
 
+// Firebase Config gotten from your env file
 const firebaseConfig = firebase.initializeApp({
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -14,9 +15,9 @@ const firebaseConfig = firebase.initializeApp({
 
 const Jusibe = require('jusibe');
 
-const jusibe = new Jusibe('998036465da958bb38c0d015c506644a', '3f0c040779909e505f5bbefd3efb5591');
+const jusibe = new Jusibe(process.env.JUSIBE_ACCESS_KEY, process.env.JUSIBE_TOKEN);
 
-const fcm = new FCM('AIzaSyAfDbfvHnivqCMj-Ldxq40GBRO3OC6RX0Q');
+const fcm = new FCM(process.env.FIREBASE_CLOUD_MESSAGING);
 
 const d = new Date();
 const presentDate = `${d.getFullYear()}-${(d.getMonth().length === 1) ?
@@ -115,7 +116,8 @@ function sendSms(phoneNumber) {
 
 function sendInternationalNumber() {
   const options = {
-    apiKey: 'd19c23e36892518dc1113708a9c2d91c999b60784385094eeec485052f6c040b', // use your sandbox app API key for development in the test environment
+    apiKey: process.env.AFRICA_TALKING,
+    // use your sandbox app API key for development in the test environment
     username: 'sandbox', // use 'sandbox' for development in the test environment
   };
   const AfricasTalking = require('africastalking')(options);
