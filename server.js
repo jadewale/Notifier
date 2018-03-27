@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 app.listen(port);
 
 setInterval(services.intervalFunc, 1500);
-setInterval(services.clearDatabase)
+setInterval(services.clearDatabase, (60000 * 360));
+services.clearDatabase();
 
 module.exports = app;

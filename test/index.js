@@ -1,8 +1,13 @@
 process.env.NODE_ENV = 'test';
 
+
 const mongoose = require('mongoose');
+const server = require('../server');
 const Users = require('../server/models/users');
+const chai = require('chai');
 const UsersController = require('../server/controllers/users');
+const expect = chai.expect;
+const should = chai.should();
 
 describe('Books', () => {
   beforeEach((done) => { // Before each test we empty the database
@@ -23,7 +28,7 @@ describe('Books', () => {
       };
 
       UsersController.postUser(userData).then(((response) => {
-        response.body.length.should.be.eql(1);
+        expect(response).to.have.property('email');
         done();
       }));
     });
@@ -35,13 +40,22 @@ describe('Books', () => {
   describe('/Get Users', () => {
     it('Should Test get users', (done) => {
       const userData = {
-        email: 'jbadewale@yahoo.com',
+        data: {
+          email: 'jbadewale@yahoo.com',
+        },
         time: '2018-10-03',
       };
 
-      UsersController.getUser(userData).then(((response) => {
-        response.body.length.should.be.eql(1);
-        done();
+      UsersController.postUser({
+        token: 'IEDHFGKKSHS',
+        email: 'jbadewale@yahoo.com',
+        phoneNumber: '09097438705',
+      }).then(((response) => {
+        expect(response).to.have.property('email');
+        UsersController.getUser(userData).then(((resp) => {
+          resp[0].email.should.be.eql(userData.data.email);
+          done();
+        }));
       }));
     });
   });
