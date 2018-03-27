@@ -9,7 +9,7 @@ const UsersController = require('../server/controllers/users');
 const expect = chai.expect;
 const should = chai.should();
 
-describe('Books', () => {
+describe('Users Cron Job', () => {
   beforeEach((done) => { // Before each test we empty the database
     Users.remove({}, (err) => {
       done();
@@ -20,7 +20,7 @@ describe('Books', () => {
     * Test the Add Users
     */
   describe('/Add Users', () => {
-    it('Should Test add users', (done) => {
+    it('Should Test add user adds a user to the database', (done) => {
       const userData = {
         token: 'IEDHFGKKSHS',
         email: 'jbadewale@yahoo.com',
@@ -38,7 +38,7 @@ describe('Books', () => {
    * Test the get Users
    */
   describe('/Get Users', () => {
-    it('Should Test get users', (done) => {
+    it('Should Test get user retrieves a user from the database', (done) => {
       const userData = {
         data: {
           email: 'jbadewale@yahoo.com',
@@ -58,5 +58,10 @@ describe('Books', () => {
         }));
       }));
     });
+  });
+
+  describe('/Update License Expired', () => {
+
+
   });
 });
