@@ -19,10 +19,16 @@ const jusibe = new Jusibe(process.env.JUSIBE_ACCESS_KEY, process.env.JUSIBE_TOKE
 
 const fcm = new FCM(process.env.FIREBASE_CLOUD_MESSAGING);
 
+/*
+ Get Present Date and a leading zero if date is One word
+ */
 const d = new Date();
 const presentDate = `${d.getFullYear()}-${(d.getMonth().length === 1) ?
   (d.getMonth() + 1) : `0${(d.getMonth() + 1)}`}-${(d.getDate().length === 1) ? `0${d.getDate()}` : d.getDate()}`;
 
+/*
+  Loops through Expired dates and adds the user to the database for Notification
+ */
 function intervalFunc() {
   fetchUserData().then((res) => {
     res.forEach((doc) => {
@@ -32,6 +38,9 @@ function intervalFunc() {
   });
 }
 
+/*
+  Fetches users with expiration date
+ */
 function fetchUserData() {
   const query = firebase.firestore()
     .collection('user')
@@ -39,21 +48,28 @@ function fetchUserData() {
   return query.get().then((querySnapShot) => querySnapShot);
 }
 
-
+/*
+  Fetches users with expiration date
+ */
 function checkUserExist(data) {
   try {
     const response = users.getUser({ data, time: Date.now() });
-    response.then((res) => res.length === 0 ? createUser(data) : console.log('exists'));
+    response.then((res) => res.length === 0 ? createUser(data) : null);
   } catch (err) {
     console.log(err);
   }
 }
 
+/*
+  Creates new user
+  Sends a push Notification
+  Updates firebase to message status expired
+ */
 function createUser(data) {
   return new Promise((resolve, reject) => {
     try {
       const response = users.postUser(data);
-      sendPushNotification(data.token, 'Your Notification has expired');
+      sendPushNotification(data.token, 'Your License has expired');
       sendSms(data.phoneNumber);
       updateDb(data.email).then(() => {
         response.then((dataObj) => resolve(dataObj));
@@ -64,6 +80,9 @@ function createUser(data) {
   });
 }
 
+/*
+  Clear database
+ */
 function clearDatabase() {
   try {
     const response = users.removeUsers();
