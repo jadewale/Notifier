@@ -2,6 +2,7 @@ const User = require('../models/users');
 
 function postUser(users) {
   const newUser = new User(users);
+  console.log('here');
 
   return new Promise((resolve, reject) => {
     newUser.save((err, user) => {
