@@ -7,8 +7,7 @@ const options = {
   poolSize: 5, reconnectTries: 5, keepAlive: 1, connectTimeoutMS: 30000,
 };
 
-const uri = 'mongodb://localhost/books' || 'mongodb://heroku_fqr9bc2w:g6bn4l78uoflchnuodveem03iq@ds129796.mlab.com:29796/heroku_fqr9bc2w' || 'mongodb://localhost/books';
-
+const uri = process.env.MONGO_URI;
 mongoose.connect(uri, options);
 
 mongoose.connection.on('connected here ', () => {
