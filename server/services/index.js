@@ -117,6 +117,9 @@ function updateDb(email) {
     .doc(email).set({ verified: false, licenseMessage: 'Expired !!!' }, { merge: true }).then((res) => (res)).catch((err) => (err));
 }
 
+/*
+  Send Sms using Jusibe and if it fails due to strange number, use Africa is talking
+ */
 function sendSms(phoneNumber) {
   const payload = {
     to: '+25473838',
