@@ -1,7 +1,8 @@
-require('./server/config');
+
 const dotenv = require('dotenv').load();
 const express = require('express');
 const app = express();
+require('./server/config');
 const services = require('./server/services');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000;
