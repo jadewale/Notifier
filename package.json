@@ -1,0 +1,24 @@
+{
+  "name": "license-plate",
+  "version": "1.0.0",
+  "description": "Verify license",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jadewale/license-plate.git"
+  },
+  "keywords": [
+    "license",
+    "search",
+    "plate"
+  ],
+  "author": "jolaade Adewale",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jadewale/license-plate/issues"
+  },
+  "homepage": "https://github.com/jadewale/license-plate#readme"
+}
