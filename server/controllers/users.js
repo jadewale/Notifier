@@ -1,5 +1,9 @@
 const User = require('../models/users');
 
+/*
+  User object for creating Data
+  returns Promise
+ */
 function postUser(users) {
   const newUser = new User(users);
 
@@ -13,6 +17,10 @@ function postUser(users) {
   });
 }
 
+/*
+  Gets user data with email and if present date is less than created
+  returns Promise
+ */
 function getUser({ data: { email }, time }) {
   return new Promise((resolve, reject) => {
     User.find({
@@ -28,6 +36,10 @@ function getUser({ data: { email }, time }) {
   });
 }
 
+/*
+  Remove User data
+  returns Promise
+ */
 function removeUsers() {
   return new Promise((resolve, reject) => {
     User.remove({}, (err, result) => {

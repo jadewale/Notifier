@@ -4,12 +4,12 @@ const users = require('../controllers/users');
 require('firebase/firestore');
 
 const firebaseConfig = firebase.initializeApp({
-  apiKey: 'AIzaSyA1u-0H2jiBrI3Pm0kRLdzYrFuKCX7YL2I',
-  authDomain: 'license-399fc.firebaseapp.com',
-  databaseURL: 'https://license-399fc.firebaseio.com',
-  projectId: 'license-399fc',
-  storageBucket: 'license-399fc.appspot.com',
-  messagingSenderId: '393448988202',
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_AUTH_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBSE_SENDER_ID,
 });
 
 const Jusibe = require('jusibe');
@@ -23,15 +23,19 @@ const presentDate = `${d.getFullYear()}-${(d.getMonth().length === 1) ?
   (d.getMonth() + 1) : `0${(d.getMonth() + 1)}`}-${(d.getDate().length === 1) ? `0${d.getDate()}` : d.getDate()}`;
 
 function intervalFunc() {
-  const query = firebase.firestore()
-    .collection('user')
-    .where('expiration', '>=', presentDate);
-  query.get().then((querySnapShot) => {
-    querySnapShot.forEach((doc) => {
+  fetchUserData().then((res) => {
+    res.forEach((doc) => {
       const { email, phoneNumber, token } = doc.data();
       checkUserExist({ email, phoneNumber, token });
     });
   });
+}
+
+function fetchUserData() {
+  const query = firebase.firestore()
+    .collection('user')
+    .where('expiration', '>=', presentDate);
+  return query.get().then((querySnapShot) => querySnapShot);
 }
 
 
@@ -123,5 +127,5 @@ function sendInternationalNumber() {
 }
 
 module.exports = {
-  intervalFunc, checkUserExist, createUser, clearDatabase, updateDb, sendPushNotification,
+  intervalFunc, fetchUserData, checkUserExist, createUser, clearDatabase, updateDb, sendPushNotification,
 };

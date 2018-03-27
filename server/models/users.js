@@ -20,5 +20,5 @@ UserSchema.pre('save', (next) => {
   next();
 });
 
-// Exports the BookSchema for use elsewhere.
+// Exports the UserSchema for use elsewhere.
 module.exports = mongoose.model('user', UserSchema);

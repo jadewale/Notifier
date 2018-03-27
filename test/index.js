@@ -6,6 +6,7 @@ const server = require('../server');
 const Users = require('../server/models/users');
 const chai = require('chai');
 const UsersController = require('../server/controllers/users');
+const Service = require('../server/services');
 const expect = chai.expect;
 const should = chai.should();
 
@@ -61,7 +62,19 @@ describe('Users Cron Job', () => {
   });
 
   describe('/Update License Expired', () => {
-
-
+    it('SHould test push notification was sent to the user and database was updated', (done) => {
+      Service.createUser({
+        token: 'IEDHFGKKSHS',
+        email: 'jbadewale@yahoo.com',
+        phoneNumber: '+2349097438705',
+      }).then((res) => {
+        Service.fetchUserData().then((resp) => {
+          resp.forEach((doc) => {
+            expect(doc.data().licenseMessage).to.equal('Expired !!!');
+          });
+          done();
+        });
+      });
+    });
   });
 });
