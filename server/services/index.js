@@ -45,7 +45,7 @@ function intervalFunc() {
 function fetchUserData() {
   const query = firebase.firestore()
     .collection('user')
-    .where('expiration', '>=', presentDate);
+    .where('expiration', '<=', presentDate);
   return query.get().then((querySnapShot) => querySnapShot);
 }
 
