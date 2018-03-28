@@ -1,6 +1,7 @@
 const firebase = require('firebase');
 const FCM = require('fcm-push');
 const users = require('../controllers/users');
+const Twilio = require('twilio');
 require('firebase/firestore');
 
 // Firebase Config gotten from your env file
@@ -122,7 +123,7 @@ function updateDb(email) {
  */
 function sendSms(phoneNumber) {
   const payload = {
-    to: '+25473838',
+    to: phoneNumber,
     from: 'Model Inc',
     message: 'Your license plate is expired',
   };
@@ -132,22 +133,22 @@ function sendSms(phoneNumber) {
       console.log(res.body);
     })
     .catch((err) => {
-      sendInternationalNumber();
+      sendInternationalNumber(phoneNumber);
     });
 }
 
-function sendInternationalNumber() {
-  const options = {
-    apiKey: process.env.AFRICA_TALKING,
-    // use your sandbox app API key for development in the test environment
-    username: 'sandbox', // use 'sandbox' for development in the test environment
-  };
-  const AfricasTalking = require('africastalking')(options);
-  const sms = AfricasTalking.SMS;
+function sendInternationalNumber(phoneNumber) {
+  const accountSid = process.env.TWILLO_UID; // Your Account SID from www.twilio.com/console
+  const authToken = process.env.TWILLO_AUTH; // Your Auth Token from www.twilio.com/console
 
-  sms.send({ message: 'Test world', to: '+2349097438705', from: '25346' })
-    .then((res) => console.log(res))
-    .catch((error) => console.log(error));
+  const client = new Twilio(accountSid, authToken);
+
+  client.messages.create({
+    body: 'Fuck you goat',
+    to: phoneNumber, // Text this number
+    from: '+18504047322', // From a valid Twilio number
+  })
+    .then((message) => console.log(message.sid));
 }
 
 module.exports = {
