@@ -144,7 +144,7 @@ function sendInternationalNumber(phoneNumber) {
   const client = new Twilio(accountSid, authToken);
 
   client.messages.create({
-    body: 'Fuck you goat',
+    body: 'Your license is expired',
     to: phoneNumber, // Text this number
     from: '+18504047322', // From a valid Twilio number
   })
