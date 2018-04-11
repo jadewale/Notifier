@@ -37,6 +37,7 @@
   "dependencies": {
     "africastalking": "^0.3.2",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "fcm-push": "^1.1.3",
