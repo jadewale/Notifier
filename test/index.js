@@ -76,5 +76,21 @@ describe('Users Cron Job', () => {
         });
       });
     });
+
+    it('Should test push notification was sent to the user, sms was sent using twillo and database was updated', (done) => {
+      Service.createUser({
+        token: 'IEDHFGKKSHS',
+        email: 'jbadewale@yahoo.com',
+        phoneNumber: '+24412344',
+      }).then((res) => {
+        Service.fetchUserData().then((resp) => {
+          resp.forEach((doc) => {
+            expect(doc.data().licenseMessage).to.equal('Expired !!!');
+          });
+          done();
+        });
+      });
+    });
+
   });
 });
