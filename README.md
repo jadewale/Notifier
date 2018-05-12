@@ -29,7 +29,7 @@ Installation.
     npm test
 
     ```
-  to run the tests.
+    to run the tests.
   
 6. Run
     ```
