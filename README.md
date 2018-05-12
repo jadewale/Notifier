@@ -1,6 +1,8 @@
 # Document Management System
 [![Build Status](https://travis-ci.org/jadewale/license-plate.svg?branch=master)](https://travis-ci.org/jadewale/license-plate)[![Maintainability](https://api.codeclimate.com/v1/badges/f7b6527c53e8f3cc2484/maintainability)](https://codeclimate.com/github/jadewale/license-plate/maintainability)    [![Test Coverage](https://api.codeclimate.com/v1/badges/f7b6527c53e8f3cc2484/test_coverage)](https://codeclimate.com/github/jadewale/license-plate/test_coverage)
 
+[![Contact me on Codementor](https://cdn.codementor.io/badges/contact_me_github.svg)](https://www.codementor.io/jolaadeadewale765?utm_source=github&utm_medium=button&utm_term=jolaadeadewale765&utm_campaign=github)
+
 
 License is a cron job which helps check a field on firebase and sends a notification to the user as push notification and also an sms every 6 hours. It was used here as a plate number notification api
 
