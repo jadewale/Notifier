@@ -62,7 +62,7 @@ describe('Users Cron Job', () => {
   });
 
   describe('/Update License Expired', () => {
-    it('SHould test push notification was sent to the user and database was updated', (done) => {
+    it('Should test push notification was sent to the user and database was updated', (done) => {
       Service.createUser({
         token: 'IEDHFGKKSHS',
         email: 'jbadewale@yahoo.com',
