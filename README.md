@@ -28,13 +28,14 @@ Installation.
 
   ```
   to run the tests.
+  
 7. Run
   ```
   npm start
 
   ```
 8. .env
-   ```
+  ```
    FIREBASE_API_KEY=YOUR KEY
    FIREBASE_AUTH_DOMAIN=YOUR APP DOMAIN
    FIREBASE_AUTH_DATABASE_URL=YOUR_DATABASE_URL
@@ -47,9 +48,9 @@ Installation.
    AFRICA_TALKING=YOUR_AFRICA_IS_TALKING
    MONGO_URI=YOUR_MONGO_DB_URI
    TWILLO_UID=YOUR_TWILLO_UIID
-   TWILLO_AUTH=YOUR_TWILLO_AUTH
+   TWILLO_AUTH=YOUR_TWILLO_AUTH 
   ```
-  Use [**Postman**](https://www.getpostman.com/) to consume the API.
+Use [**Postman**](https://www.getpostman.com/) to consume the API.
 
 9. Well...enjoy.
 
