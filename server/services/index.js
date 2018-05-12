@@ -57,7 +57,7 @@ function checkUserExist(data) {
     const response = users.getUser({ data, time: Date.now() });
     response.then((res) => res.length === 0 ? createUser(data) : null);
   } catch (err) {
-    console.log(err);
+
   }
 }
 
@@ -76,7 +76,6 @@ function createUser(data) {
         response.then((dataObj) => resolve(dataObj));
       });
     } catch (err) {
-      console.log(err);
     }
   });
 }
@@ -89,7 +88,7 @@ function clearDatabase() {
     const response = users.removeUsers();
     response.then((res) => console.log(res));
   } catch (err) {
-    console.log(err);
+
   }
 }
 

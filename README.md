@@ -21,7 +21,8 @@ Installation.
 
     ```
     This will install the required dependencies.
-5 . Run
+
+5. Run
   ```
   npm test
 
