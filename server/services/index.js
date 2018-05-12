@@ -121,11 +121,11 @@ function updateDb(email) {
 /*
   Send Sms using Jusibe and if it fails due to strange number, use Africa is talking
  */
-function sendSms(phoneNumber) {
+function sendSms(phoneNumber, text) {
   const payload = {
     to: phoneNumber,
     from: 'Model Inc',
-    message: 'Your license plate is expired',
+    message: text || 'Your license plate is expired',
   };
 
   jusibe.sendSMS(payload)
@@ -133,18 +133,18 @@ function sendSms(phoneNumber) {
       console.log(res.body);
     })
     .catch((err) => {
-      sendInternationalNumber(phoneNumber);
+      sendInternationalNumber(phoneNumber, text);
     });
 }
 
-function sendInternationalNumber(phoneNumber) {
+function sendInternationalNumber(phoneNumber, text) {
   const accountSid = process.env.TWILLO_UID; // Your Account SID from www.twilio.com/console
   const authToken = process.env.TWILLO_AUTH; // Your Auth Token from www.twilio.com/console
 
   const client = new Twilio(accountSid, authToken);
 
   client.messages.create({
-    body: 'Your license is expired',
+    body: text || 'Your license is expired',
     to: phoneNumber, // Text this number
     from: '+18504047322', // From a valid Twilio number
   })
@@ -152,5 +152,5 @@ function sendInternationalNumber(phoneNumber) {
 }
 
 module.exports = {
-  intervalFunc, fetchUserData, checkUserExist, createUser, clearDatabase, updateDb, sendPushNotification,
+  intervalFunc, fetchUserData, checkUserExist, createUser, clearDatabase, updateDb, sendPushNotification, sendSms,
 };
