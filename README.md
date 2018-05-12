@@ -29,12 +29,12 @@ Installation.
   ```
   to run the tests.
   
-7. Run
+6. Run
   ```
   npm start
 
   ```
-8. .env
+7. .env
   ```
    FIREBASE_API_KEY=YOUR KEY
    FIREBASE_AUTH_DOMAIN=YOUR APP DOMAIN
@@ -52,7 +52,7 @@ Installation.
   ```
 Use [**Postman**](https://www.getpostman.com/) to consume the API.
 
-9. Well...enjoy.
+8. Well...enjoy.
 
 ## Code Example
 
