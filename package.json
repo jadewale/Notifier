@@ -6,7 +6,9 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "nyc --reporter=html --reporter=text mocha --timeout 9000 --exit ",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 9000 --exit ",
+    "coverage": "codeclimate-test-reporter < --reporter=text-lcov"
   },
   "repository": {
     "type": "git",

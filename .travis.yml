@@ -1,10 +1,13 @@
 language: node_js
 node_js:
   - "6"
+services:
+  - mongodb
 script:
   - npm test
 after_success:
+  - npm install codeclimate-test-reporter -g
   - npm run coverage
 addons:
     code_climate:
-        repo_token: 3821377a426736abd98afd88df949ce06e65a660b70421199f5b7151992d6467
+        repo_token: 1630177d3cf3ad67c18460a43cb1e8f5fd927b74bf523f75a301cccc654e2c8a
