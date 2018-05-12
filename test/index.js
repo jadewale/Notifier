@@ -5,15 +5,33 @@ const mongoose = require('mongoose');
 const server = require('../server');
 const Users = require('../server/models/users');
 const chai = require('chai');
+const chaiHttp = require('chai-http');
 const UsersController = require('../server/controllers/users');
 const Service = require('../server/services');
 const expect = chai.expect;
 const should = chai.should();
+chai.use(chaiHttp);
 
 describe('Users Cron Job', () => {
   beforeEach((done) => { // Before each test we empty the database
     Users.remove({}, (err) => {
       done();
+    });
+  });
+
+  describe('/Send', () => {
+    it('Should send Sms and Push notification to a user from a http request', (done) => {
+      const requestObj = {
+        phoneNumber: '+2349097438705', text: 'hello World', token: '474838', email: '', displayName: '',
+      };
+      chai.request(server)
+        .post('/send')
+        .send(requestObj).end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message');
+          done();
+        });
     });
   });
 
@@ -61,6 +79,9 @@ describe('Users Cron Job', () => {
     });
   });
 
+  /*
+    Test Updated Database
+   */
   describe('/Update License Expired', () => {
     it('Should test push notification was sent to the user and database was updated', (done) => {
       Service.createUser({
@@ -91,6 +112,5 @@ describe('Users Cron Job', () => {
         });
       });
     });
-
   });
 });
