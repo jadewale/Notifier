@@ -6,11 +6,8 @@ License is a cron job which helps check a field on firebase and sends a notifica
 
 Development
 -----------
-This application is created using Nodejs environment. It implements [**Express**](http://expressjs.com/) as the routing framework and
-[**Mongoose**](http://mongoosejs.com/), an object modeling package, to interact with MongoDB.
-[**Firebase**](https://firebase.google.com/) is used to get user information and user token and also sends a push notification.
-[**Twillo**] (https://www.twilio.com/) is used to send sms to International Numbers.
-[**Jusibe**] (https://jusibe.com/) also used to send SMS to local Numbers (+234) . If The application sms fails for a local number, it uses Twillo to send an sms.
+This application is created using Nodejs environment. It implements [**Express**](http://expressjs.com/) as the routing framework and [**Mongoose**](http://mongoosejs.com/), an object modeling package, to interact with MongoDB. [**Firebase**](https://firebase.google.com/) is used to get user information and user token and also sends a push notification. [**Twillo**](https://twilio.com/) is used to send sms to International Numbers.
+[**Jusibe**](https://jusibe.com/) also used to send SMS to local Numbers (+234) . If The application sms fails for a local number, it uses Twillo to send an sms.
 
 
 Installation.
