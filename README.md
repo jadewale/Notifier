@@ -23,33 +23,33 @@ Installation.
     This will install the required dependencies.
 
 5. Run
-  ```
-  npm test
+    ```
+    npm test
 
-  ```
+    ```
   to run the tests.
   
 6. Run
-  ```
-  npm start
+    ```
+    npm start
 
-  ```
+    ```
 7. .env
-  ```
-   FIREBASE_API_KEY=YOUR KEY
-   FIREBASE_AUTH_DOMAIN=YOUR APP DOMAIN
-   FIREBASE_AUTH_DATABASE_URL=YOUR_DATABASE_URL
-   FIREBASE_PROJECT_ID=PROJECT_ID
-   FIREBASE_STORAGE_BUCKET=YOUR STORAGE BUCKET
-   FIREBSE_SENDER_ID=YOUR_SENDER_D
-   JUSIBE_ACCESS_KEY=JUSIBE_ACESS_KEY
-   JUSIBE_TOKEN=JUSIBE_TOKEN
-   FIREBASE_CLOUD_MESSAGING=YOUR_FIREBASE_CLOUD_MESSAGING
-   AFRICA_TALKING=YOUR_AFRICA_IS_TALKING
-   MONGO_URI=YOUR_MONGO_DB_URI
-   TWILLO_UID=YOUR_TWILLO_UIID
-   TWILLO_AUTH=YOUR_TWILLO_AUTH 
-  ```
+    ```
+     FIREBASE_API_KEY=YOUR KEY
+     FIREBASE_AUTH_DOMAIN=YOUR APP DOMAIN
+     FIREBASE_AUTH_DATABASE_URL=YOUR_DATABASE_URL
+     FIREBASE_PROJECT_ID=PROJECT_ID
+     FIREBASE_STORAGE_BUCKET=YOUR STORAGE BUCKET
+     FIREBSE_SENDER_ID=YOUR_SENDER_D
+     JUSIBE_ACCESS_KEY=JUSIBE_ACESS_KEY
+     JUSIBE_TOKEN=JUSIBE_TOKEN
+     FIREBASE_CLOUD_MESSAGING=YOUR_FIREBASE_CLOUD_MESSAGING
+     AFRICA_TALKING=YOUR_AFRICA_IS_TALKING
+     MONGO_URI=YOUR_MONGO_DB_URI
+     TWILLO_UID=YOUR_TWILLO_UIID
+     TWILLO_AUTH=YOUR_TWILLO_AUTH 
+    ```
 Use [**Postman**](https://www.getpostman.com/) to consume the API.
 
 8. Well...enjoy.
@@ -57,17 +57,17 @@ Use [**Postman**](https://www.getpostman.com/) to consume the API.
 ## Code Example
 
 **Sends a Notification**
-```
-POST - /send
+  ```
+  POST - /send
 
-Post data
-{
-  email: 'jola@gmail.com', // Optional
-  token: 'example@host.com' // Required
-  phoneNumber : 'lastname', // Required, always try to put the Country code
-  text: 'Hello World', // Required
-}
-```
+  Post data
+  {
+    email: 'jola@gmail.com', // Optional
+    token: 'example@host.com' // Required
+    phoneNumber : 'lastname', // Required, always try to put the Country code
+    text: 'Hello World', // Required
+  }
+  ```
 
 **********
 
