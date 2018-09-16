@@ -22,3 +22,6 @@ yarn-error.log*
 # Jetbrains
 .idea/
 *.iml
+
+*.nyc_output/
+/.nyc_output/
